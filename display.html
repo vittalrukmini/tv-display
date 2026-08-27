@@ -19,9 +19,9 @@
     /* Gold border frame — always on top */
     .border-frame {
       position: fixed;
-      inset: 1.5vh 1.2vw;
-      border: 0.5vh solid #C99423;
-      border-radius: 1vh;
+      inset: 1.5vmin 1.2vmin;
+      border: 0.5vmin solid #C99423;
+      border-radius: 1vmin;
       pointer-events: none;
       z-index: 1000;
     }
@@ -31,7 +31,7 @@
       position: fixed; inset: 0;
       display: flex;
       align-items: center; justify-content: center;
-      font-size: 3vh; color: #0D2D5E;
+      font-size: 3vmin; color: #0D2D5E;
       background: #F2F2F2;
       z-index: 900;
     }
@@ -40,14 +40,14 @@
       text-align: center;
       padding: 4vw;
       flex-direction: column;
-      gap: 2vh;
+      gap: 2vmin;
     }
     #error-screen .error-title {
-      font-size: 3.5vh;
+      font-size: 3.5vmin;
       font-weight: 700;
     }
     #error-message {
-      font-size: 2.5vh;
+      font-size: 2.5vmin;
       max-width: 80vw;
     }
 
@@ -78,7 +78,7 @@
       height: 22vh;
       flex-shrink: 0;
     }
-    .logo { height: 18vh; width: auto; object-fit: contain; }
+    .logo { height: 18vmin; width: auto; object-fit: contain; }
 
     /* Content area */
     .content-area {
@@ -87,27 +87,27 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 2vh 5vw 1vh;
+      padding: 2vmin 5vw 1vmin;
       overflow: hidden;
     }
 
     /* Slide title */
     .slide-title {
       color: #4709E1;
-      font-size: 6vh;
+      font-size: 6vmin;
       font-weight: 700;
       text-align: center;
       letter-spacing: 0.05em;
-      margin-bottom: 2vh;
+      margin-bottom: 2vmin;
       text-transform: uppercase;
     }
 
     /* Content card */
     .content-card {
-      border: 0.35vh solid #C99423;
-      border-radius: 2vh;
+      border: 0.35vmin solid #C99423;
+      border-radius: 2vmin;
       background: rgba(255, 255, 255, 0.85);
-      padding: 3vh 4vw;
+      padding: 3vmin 4vw;
       width: 100%;
       max-width: 88vw;
     }
@@ -116,21 +116,21 @@
     .single-sponsor { text-align: center; }
     .sponsor-label {
       color: #00B0F0;
-      font-size: 3vh;
+      font-size: 3vmin;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 1.5vh;
+      margin-bottom: 1.5vmin;
     }
     .sponsor-date {
       color: #0D2D5E;
-      font-size: 4vh;
+      font-size: 4vmin;
       font-weight: 600;
-      margin-bottom: 1.5vh;
+      margin-bottom: 1.5vmin;
     }
     .sponsor-name {
       color: #0D2D5E;
-      font-size: 5.5vh;
+      font-size: 5.5vmin;
       font-weight: 700;
     }
 
@@ -138,37 +138,37 @@
     .seva-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 2vh;
+      font-size: 2vmin;
       color: #0D2D5E;
     }
     .seva-table th {
       color: #00B0F0;
-      font-size: 2.1vh;
+      font-size: 2.1vmin;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 0.8vh 1.5vw;
-      border-bottom: 0.2vh solid #C99423;
+      padding: 0.8vmin 1.5vw;
+      border-bottom: 0.2vmin solid #C99423;
       text-align: left;
     }
     .seva-table td {
-      padding: 0.65vh 1.5vw;
-      border-bottom: 0.1vh solid rgba(201,148,35,0.25);
+      padding: 0.65vmin 1.5vw;
+      border-bottom: 0.1vmin solid rgba(201,148,35,0.25);
     }
     .seva-table .col-date    { width: 24%; }
     .seva-table .col-day     { width: 18%; }
     .seva-table .col-sponsor { width: 58%; font-weight: 600; }
     .seva-table tr:last-child td { border-bottom: none; }
-    .monthly-list { overflow-y: auto; max-height: 58vh; }
+    .monthly-list { overflow-y: auto; max-height: 55vh; }
 
     /* Bhog Seva current month (slide 5) */
     .bhog-row {
-      padding: 1.5vh 0;
-      border-bottom: 0.1vh solid rgba(201,148,35,0.3);
+      padding: 1.5vmin 0;
+      border-bottom: 0.1vmin solid rgba(201,148,35,0.3);
     }
     .bhog-row:last-child { border-bottom: none; }
     .bhog-sponsor {
       color: #0D2D5E;
-      font-size: 3.8vh;
+      font-size: 3.8vmin;
       font-weight: 600;
     }
 
@@ -177,13 +177,13 @@
       display: flex;
       align-items: baseline;
       gap: 2vw;
-      padding: 1.2vh 0;
-      border-bottom: 0.1vh solid rgba(201,148,35,0.3);
+      padding: 1.2vmin 0;
+      border-bottom: 0.1vmin solid rgba(201,148,35,0.3);
     }
     .bhog-month-group:last-child { border-bottom: none; }
     .bhog-month-label {
       color: #00B0F0;
-      font-size: 2.5vh;
+      font-size: 2.5vmin;
       font-weight: 700;
       min-width: 16vw;
       flex-shrink: 0;
@@ -191,29 +191,29 @@
     }
     .bhog-month-sponsors {
       color: #0D2D5E;
-      font-size: 2.5vh;
+      font-size: 2.5vmin;
       font-weight: 500;
     }
 
     /* Pushpa Kainkaryam (slide 7) */
     .pushpa-row {
-      padding: 1.5vh 0;
-      border-bottom: 0.1vh solid rgba(201,148,35,0.3);
+      padding: 1.5vmin 0;
+      border-bottom: 0.1vmin solid rgba(201,148,35,0.3);
     }
     .pushpa-row:last-child { border-bottom: none; }
     .pushpa-sponsor {
       color: #0D2D5E;
-      font-size: 3.8vh;
+      font-size: 3.8vmin;
       font-weight: 600;
     }
 
     /* No-data message */
     .no-data {
       color: #888;
-      font-size: 2.5vh;
+      font-size: 2.5vmin;
       text-align: center;
       font-style: italic;
-      padding: 2vh 0;
+      padding: 2vmin 0;
     }
 
     /* Footer */
@@ -225,7 +225,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.3vh;
+      font-size: 2.3vmin;
       font-weight: 400;
       letter-spacing: 0.03em;
     }
@@ -237,23 +237,27 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 0.8vw;
+      gap: 0.8vmin;
       z-index: 500;
     }
-    .dot {
-      width: 1vh; height: 1vh;
-      border-radius: 50%;
-      background: rgba(201,148,35,0.35);
-      transition: background 0.3s;
-    }
+    .dot { width: 1vmin; height: 1vmin; border-radius: 50%; background: rgba(201,148,35,0.35); transition: background 0.3s; }
     .dot.active { background: #C99423; }
 
     /* Page number in slide title */
     .page-num {
-      font-size: 3.5vh;
+      font-size: 3.5vmin;
       font-weight: 400;
       color: #C99423;
       letter-spacing: 0;
+    }
+
+    /* ── Portrait overrides ── */
+    @media (orientation: portrait) {
+      .header { height: 14vh; padding: 1vmin 4vw; }
+      .logo { height: 11vmin; }
+      .monthly-list { max-height: 70vh; }
+      .bhog-month-label { min-width: 28vw; }
+      .slide-dots { bottom: 9.5vh; }
     }
   </style>
 </head>
