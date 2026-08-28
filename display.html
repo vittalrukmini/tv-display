@@ -339,6 +339,12 @@
       const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
       if (req) req.call(el).catch(() => {});
       document.getElementById('fullscreen-overlay').style.display = 'none';
+      // If slideshow already loaded, make sure it's visible
+      const ss = document.getElementById('slideshow');
+      if (ss.innerHTML) {
+        ss.style.display = 'block';
+        document.getElementById('slide-dots').style.display = 'flex';
+      }
     }
 
     /* ── Entry point — load data immediately, tap only for fullscreen ── */
@@ -384,9 +390,20 @@
     }
 
     async function fetchCSV(url) {
-      const resp = await fetch(url);
-      if (!resp.ok) throw new Error('Failed to load data (HTTP ' + resp.status + ')');
-      return resp.text();
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      try {
+        const resp = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeout);
+        if (!resp.ok) throw new Error('Failed to load data (HTTP ' + resp.status + ')');
+        const text = await resp.text();
+        if (text.trim().startsWith('<!')) throw new Error('Google Sheets returned a login page — please re-publish the sheet as CSV (File → Share → Publish to web)');
+        return text;
+      } catch (err) {
+        clearTimeout(timeout);
+        if (err.name === 'AbortError') throw new Error('Request timed out — check internet connection');
+        throw err;
+      }
     }
 
     /* ── CSV parser ────────────────────────────────────────────── */
