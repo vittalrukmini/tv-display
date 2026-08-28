@@ -333,8 +333,18 @@
 
     let currentSlideIndex = 0;
 
+    /* ── Fullscreen ────────────────────────────────────────────── */
+    function enterFullscreen() {
+      const el = document.documentElement;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+      if (req) req.call(el).catch(() => {});
+      document.getElementById('fullscreen-overlay').style.display = 'none';
+      document.getElementById('loading-screen').style.display = 'flex';
+      startLoading();
+    }
+
     /* ── Entry point ───────────────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', async () => {
+    async function startLoading() {
       try {
         const data = await loadData();
         buildSlides(data);
@@ -348,7 +358,7 @@
         document.getElementById('error-message').textContent = err.message;
         document.getElementById('error-screen').style.display = 'flex';
       }
-    });
+    }
 
     /* ── Google Sheets CSV URLs ────────────────────────────────── */
     const SHEET_URLS = {
