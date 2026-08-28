@@ -339,26 +339,28 @@
       const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
       if (req) req.call(el).catch(() => {});
       document.getElementById('fullscreen-overlay').style.display = 'none';
-      document.getElementById('loading-screen').style.display = 'flex';
-      startLoading();
     }
 
-    /* ── Entry point ───────────────────────────────────────────── */
-    async function startLoading() {
+    /* ── Entry point — load data immediately, tap only for fullscreen ── */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Start loading data right away in background
+      document.getElementById('loading-screen').style.display = 'flex';
       try {
         const data = await loadData();
         buildSlides(data);
+        document.getElementById('fullscreen-overlay').style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('slideshow').style.display = 'block';
         document.getElementById('slide-dots').style.display = 'flex';
         startSlideshow();
         scheduleMidnightRefresh();
       } catch (err) {
+        document.getElementById('fullscreen-overlay').style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('error-message').textContent = err.message;
         document.getElementById('error-screen').style.display = 'flex';
       }
-    }
+    });
 
     /* ── Google Sheets CSV URLs ────────────────────────────────── */
     const SHEET_URLS = {
