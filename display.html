@@ -489,8 +489,8 @@
 
     /* ── Date parsing ──────────────────────────────────────────── */
     function parseFlexibleDate(s) {
-      // "25 Jul 2026"
-      const p = s.split(/\s+/);
+      // "25 Jul 2026" (space) or "25-Jul-2026" (dash)
+      const p = s.split(/[\s-]+/);
       if (p.length === 3) {
         const day = parseInt(p[0], 10), mIdx = MONTH_SHORT.indexOf(p[1]), yr = parseInt(p[2], 10);
         if (!isNaN(day) && mIdx >= 0 && !isNaN(yr)) return new Date(yr, mIdx, day, 0, 0, 0, 0);
