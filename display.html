@@ -26,6 +26,28 @@
       z-index: 1000;
     }
 
+    /* Fullscreen tap overlay */
+    #fullscreen-overlay {
+      position: fixed; inset: 0;
+      background: #232A37;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 2000;
+      cursor: pointer;
+      gap: 3vmin;
+    }
+    #fullscreen-overlay img { height: 18vmin; width: auto; object-fit: contain; }
+    #fullscreen-overlay .tap-title {
+      color: #C99423;
+      font-size: 6vmin;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    #fullscreen-overlay .tap-sub {
+      color: #ffffff;
+      font-size: 3vmin;
+    }
+
     /* Loading / Error screens */
     #loading-screen, #error-screen {
       position: fixed; inset: 0;
@@ -263,9 +285,22 @@
 </head>
 <body>
 
+  <div id="fullscreen-overlay">
+    <img src="LOGO/samsthan LOGO.jpg.jpeg" alt="Samsthan">
+    <div class="tap-title">Sri Vittal Rukmini Samsthan</div>
+    <div class="tap-sub">Tap anywhere to start the display</div>
+  </div>
+
   <div class="border-frame"></div>
 
-  <div id="loading-screen">
+  <!-- Tap to enter fullscreen -->
+  <div id="fullscreen-overlay" onclick="enterFullscreen()">
+    <img src="LOGO/samsthan LOGO.jpg.jpeg" alt="Samsthan">
+    <div class="tap-title">Sri Vittal Rukmini Samsthan</div>
+    <div class="tap-sub">Tap anywhere to start the display</div>
+  </div>
+
+  <div id="loading-screen" style="display:none">
     <p>Loading seva schedule&hellip;</p>
   </div>
 
@@ -652,6 +687,14 @@
       const total = document.querySelectorAll('#slideshow .slide').length;
       setInterval(() => showSlide((currentSlideIndex + 1) % total), SLIDE_DURATION_MS);
     }
+
+    /* ── Fullscreen on tap ─────────────────────────────────────── */
+    document.getElementById('fullscreen-overlay').addEventListener('click', () => {
+      const el = document.documentElement;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+      if (req) req.call(el).catch(() => {});
+      document.getElementById('fullscreen-overlay').style.display = 'none';
+    });
 
     /* ── Daily refresh ─────────────────────────────────────────── */
     function scheduleMidnightRefresh() {
