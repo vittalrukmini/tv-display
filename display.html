@@ -26,28 +26,6 @@
       z-index: 1000;
     }
 
-    /* Fullscreen tap overlay */
-    #fullscreen-overlay {
-      position: fixed; inset: 0;
-      background: #232A37;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 2000;
-      cursor: pointer;
-      gap: 3vmin;
-    }
-    #fullscreen-overlay img { height: 18vmin; width: auto; object-fit: contain; }
-    #fullscreen-overlay .tap-title {
-      color: #C99423;
-      font-size: 6vmin;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-    #fullscreen-overlay .tap-sub {
-      color: #ffffff;
-      font-size: 3vmin;
-    }
-
     /* Loading / Error screens */
     #loading-screen, #error-screen {
       position: fixed; inset: 0;
@@ -285,22 +263,9 @@
 </head>
 <body>
 
-  <div id="fullscreen-overlay">
-    <img src="LOGO/samsthan LOGO.jpg.jpeg" alt="Samsthan">
-    <div class="tap-title">Sri Vittal Rukmini Samsthan</div>
-    <div class="tap-sub">Tap anywhere to start the display</div>
-  </div>
-
   <div class="border-frame"></div>
 
-  <!-- Tap to enter fullscreen -->
-  <div id="fullscreen-overlay" onclick="enterFullscreen()">
-    <img src="LOGO/samsthan LOGO.jpg.jpeg" alt="Samsthan">
-    <div class="tap-title">Sri Vittal Rukmini Samsthan</div>
-    <div class="tap-sub">Tap anywhere to start the display</div>
-  </div>
-
-  <div id="loading-screen" style="display:none">
+  <div id="loading-screen">
     <p>Loading seva schedule&hellip;</p>
   </div>
 
@@ -338,30 +303,20 @@
       const el = document.documentElement;
       const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
       if (req) req.call(el).catch(() => {});
-      document.getElementById('fullscreen-overlay').style.display = 'none';
-      // If slideshow already loaded, make sure it's visible
-      const ss = document.getElementById('slideshow');
-      if (ss.innerHTML) {
-        ss.style.display = 'block';
-        document.getElementById('slide-dots').style.display = 'flex';
-      }
     }
 
-    /* ── Entry point — load data immediately, tap only for fullscreen ── */
+    /* ── Entry point — load data immediately ── */
     document.addEventListener('DOMContentLoaded', async () => {
-      // Start loading data right away in background
       document.getElementById('loading-screen').style.display = 'flex';
       try {
         const data = await loadData();
         buildSlides(data);
-        document.getElementById('fullscreen-overlay').style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('slideshow').style.display = 'block';
         document.getElementById('slide-dots').style.display = 'flex';
         startSlideshow();
         scheduleMidnightRefresh();
       } catch (err) {
-        document.getElementById('fullscreen-overlay').style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('error-message').textContent = err.message;
         document.getElementById('error-screen').style.display = 'flex';
@@ -717,12 +672,9 @@
       setInterval(() => showSlide((currentSlideIndex + 1) % total), SLIDE_DURATION_MS);
     }
 
-    /* ── Fullscreen on tap ─────────────────────────────────────── */
-    document.getElementById('fullscreen-overlay').addEventListener('click', () => {
-      const el = document.documentElement;
-      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
-      if (req) req.call(el).catch(() => {});
-      document.getElementById('fullscreen-overlay').style.display = 'none';
+    /* ── Tap slideshow to go fullscreen ───────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('slideshow').addEventListener('click', enterFullscreen);
     });
 
     /* ── Daily refresh ─────────────────────────────────────────── */
