@@ -345,20 +345,16 @@
     }
 
     async function fetchCSV(url) {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 15000);
-      try {
-        const resp = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeout);
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Request timed out — check internet connection')), 15000)
+      );
+      const fetchPromise = fetch(url).then(async resp => {
         if (!resp.ok) throw new Error('Failed to load data (HTTP ' + resp.status + ')');
         const text = await resp.text();
         if (text.trim().startsWith('<!')) throw new Error('Google Sheets returned a login page — please re-publish the sheet as CSV (File → Share → Publish to web)');
         return text;
-      } catch (err) {
-        clearTimeout(timeout);
-        if (err.name === 'AbortError') throw new Error('Request timed out — check internet connection');
-        throw err;
-      }
+      });
+      return Promise.race([fetchPromise, timeoutPromise]);
     }
 
     /* ── CSV parser ────────────────────────────────────────────── */
