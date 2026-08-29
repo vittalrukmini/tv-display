@@ -255,20 +255,22 @@
     @media (orientation: portrait) {
       .header { height: 18vh; padding: 1.5vmin 4vw; }
       .logo { height: 15vmin; }
-      .slide-title { font-size: 9vmin; }
-      .sponsor-label { font-size: 4.5vmin; }
-      .sponsor-date { font-size: 6vmin; }
-      .sponsor-name { font-size: 8vmin; }
-      .content-card { max-width: 92vw; padding: 3vmin 5vw; }
-      .seva-table { font-size: 3.2vmin; }
-      .seva-table th { font-size: 3.2vmin; }
-      .bhog-sponsor { font-size: 5.5vmin; }
-      .pushpa-sponsor { font-size: 5.5vmin; }
-      .bhog-month-label { min-width: 28vw; font-size: 3.8vmin; }
-      .bhog-month-sponsors { font-size: 3.8vmin; }
-      .footer { height: 8vh; font-size: 3vmin; }
-      .monthly-list { max-height: 65vh; }
-      .slide-dots { bottom: 9.5vh; }
+      .slide-title { font-size: 11vmin; margin-bottom: 4vmin; }
+      .sponsor-label { font-size: 5.5vmin; margin-bottom: 3vmin; }
+      .sponsor-date { font-size: 7vmin; margin-bottom: 3vmin; }
+      .sponsor-name { font-size: 10vmin; line-height: 1.25; }
+      .content-card { max-width: 92vw; padding: 5vmin 6vw; min-height: 42vh; display: flex; flex-direction: column; justify-content: center; }
+      .seva-table { font-size: 3.8vmin; }
+      .seva-table th { font-size: 3.8vmin; padding: 1.2vmin 2vw; }
+      .seva-table td { padding: 1.2vmin 2vw; }
+      .bhog-sponsor { font-size: 6vmin; padding: 2vmin 0; }
+      .pushpa-sponsor { font-size: 6vmin; padding: 2vmin 0; }
+      .bhog-month-label { min-width: 28vw; font-size: 4.5vmin; }
+      .bhog-month-sponsors { font-size: 4.5vmin; }
+      .bhog-month-group { padding: 2vmin 0; }
+      .footer { height: 9vh; font-size: 3.5vmin; }
+      .monthly-list { max-height: 62vh; }
+      .slide-dots { bottom: 10vh; }
     }
   </style>
 </head>
@@ -318,9 +320,7 @@
 
     /* ── Entry point — load data immediately ── */
     document.addEventListener('DOMContentLoaded', async () => {
-      const ls = document.getElementById('loading-screen');
-      ls.style.display = 'flex';
-      ls.innerHTML = '<p>Loading seva schedule…</p><p style="font-size:1.8vmin;color:#888;margin-top:1vh;">screen:' + screen.width + '\xd7' + screen.height + ' &nbsp; viewport:' + window.innerWidth + '\xd7' + window.innerHeight + '</p>';
+      document.getElementById('loading-screen').style.display = 'flex';
       try {
         const data = await loadData();
         buildSlides(data);
