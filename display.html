@@ -154,9 +154,9 @@
       padding: 0.65vmin 1.5vw;
       border-bottom: 0.1vmin solid rgba(201,148,35,0.25);
     }
-    .seva-table .col-date    { width: 24%; }
-    .seva-table .col-day     { width: 18%; }
-    .seva-table .col-sponsor { width: 58%; font-weight: 600; }
+    .seva-table .col-date    { width: 13%; }
+    .seva-table .col-day     { width: 22%; }
+    .seva-table .col-sponsor { width: 65%; font-weight: 600; }
     .seva-table tr:last-child td { border-bottom: none; }
     .monthly-list { overflow-y: auto; max-height: 55vh; }
 
@@ -259,7 +259,8 @@
       .sponsor-label { font-size: 5.5vmin; margin-bottom: 3vmin; }
       .sponsor-date { font-size: 7vmin; margin-bottom: 3vmin; }
       .sponsor-name { font-size: 10vmin; line-height: 1.25; }
-      .content-card { max-width: 92vw; padding: 5vmin 6vw; min-height: 42vh; display: flex; flex-direction: column; justify-content: center; }
+      .content-area { padding: 2vmin 2vw 1vmin; }
+      .content-card { width: 95vw; max-width: 95vw; padding: 4vmin 5vw; min-height: 40vh; }
       .seva-table { font-size: 3.8vmin; }
       .seva-table th { font-size: 3.8vmin; padding: 1.2vmin 2vw; }
       .seva-table td { padding: 1.2vmin 2vw; }
@@ -608,7 +609,7 @@
       let rows = entries.length === 0
         ? `<tr><td colspan="3" class="no-data">No sponsors scheduled for this period</td></tr>`
         : entries.map(e => `<tr>
-            <td class="col-date">${e.dateStr}</td>
+            <td class="col-date">${e.dateStr.split(/[\s\-]+/)[0]}</td>
             <td class="col-day">${e.dayOfWeek}</td>
             <td class="col-sponsor">${e.sponsor}</td>
           </tr>`).join('');
