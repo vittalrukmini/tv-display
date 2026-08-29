@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Sri Vittal Rukmini Samsthan – Seva Display</title>
   <!-- SheetJS loaded when switching to real Excel/Google Drive source -->
   <!-- <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script> -->
@@ -318,7 +318,9 @@
 
     /* ── Entry point — load data immediately ── */
     document.addEventListener('DOMContentLoaded', async () => {
-      document.getElementById('loading-screen').style.display = 'flex';
+      const ls = document.getElementById('loading-screen');
+      ls.style.display = 'flex';
+      ls.innerHTML = '<p>Loading seva schedule…</p><p style="font-size:1.8vmin;color:#888;margin-top:1vh;">screen:' + screen.width + '\xd7' + screen.height + ' &nbsp; viewport:' + window.innerWidth + '\xd7' + window.innerHeight + '</p>';
       try {
         const data = await loadData();
         buildSlides(data);
