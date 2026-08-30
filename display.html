@@ -627,13 +627,14 @@
     }
 
     function renderBhogSevaCurrentSlide(entries, monthName) {
-      const items = entries.length === 0
+      const inner = entries.length === 0
         ? `<p class="no-data">No sponsors scheduled for this month</p>`
-        : entries.map(e => `<div class="bhog-row"><span class="bhog-sponsor">${e.sponsor}</span></div>`).join('');
+        : `<p class="sponsor-label">SPONSOR</p>` +
+          entries.map(e => `<p class="sponsor-name">${e.sponsor}</p>`).join('<hr style="border:none;border-top:0.15vmin solid rgba(201,148,35,0.4);margin:1.5vmin 0;">');
       return `${headerHTML()}
         <div class="content-area">
           <div class="slide-title">Bhog Seva &mdash; ${monthName}</div>
-          <div class="content-card bhog-current">${items}</div>
+          <div class="content-card single-sponsor">${inner}</div>
         </div>
         ${footerHTML()}`;
     }
