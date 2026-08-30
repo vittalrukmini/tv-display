@@ -656,13 +656,14 @@
     }
 
     function renderPushpaKainkaryamSlide(entries, year) {
-      const items = entries.length === 0
+      const inner = entries.length === 0
         ? `<p class="no-data">No sponsors registered for ${year}</p>`
-        : entries.map(e => `<div class="pushpa-row"><span class="pushpa-sponsor">${e.sponsor}</span></div>`).join('');
+        : `<p class="sponsor-label">SPONSOR</p>` +
+          entries.map(e => `<p class="sponsor-name">${e.sponsor}</p>`).join('<hr style="border:none;border-top:0.15vmin solid rgba(201,148,35,0.4);margin:1.5vmin 0;">');
       return `${headerHTML()}
         <div class="content-area">
           <div class="slide-title">Pushpa Kainkaryam for the Entire Year ${year}</div>
-          <div class="content-card pushpa-list">${items}</div>
+          <div class="content-card single-sponsor">${inner}</div>
         </div>
         ${footerHTML()}`;
     }
